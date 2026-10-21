@@ -218,3 +218,27 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# ---- Nexolve / ML project ----
+# Model checkpoints and weights
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Data and tokenizer artifacts
+data/
+*.bin
+*.npy
+*.parquet
+*.jsonl
+
+# Experiment outputs
+runs/
+logs/
+wandb/
+outputs/
+
+# macOS / editors
+.DS_Store
+.idea/
