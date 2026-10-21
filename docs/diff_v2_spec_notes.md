@@ -135,3 +135,24 @@ Ambiguities / things the spec does NOT pin down (our decisions, all flagged):
    attention parameters can be saved. We do not reallocate for D: D keeps T's FFN and simply has more parameters. The size difference is
    then absorbed by the control P (project plan), not by shrinking D.
 7. The blog's results are "still running" and no formal report exists; the claims above are the authors' preliminary observations.
+
+## 9. Deviations and choices (approved by the team lead, 2026-10-21)
+
+The spec leaves four things open or differs from our project setup. Each is a deliberate choice:
+
+1. **D is larger than T; P absorbs the difference.** The blog suggests the extra attention parameters can be "borrowed from
+   other parts of the model". We do not do that for D. D keeps T's FFN and simply has more parameters (29.26M vs 27.66M, +5.77%).
+   *Why:* the project question is whether DIFF V2 helps, and the cleanest D is the official attention dropped into an otherwise
+   unchanged T. The size gap is handled by the control arm P, which spends the same extra parameters on a plain-attention model,
+   so "more capacity" and "differential attention" are separated at the comparison level, not by changing D.
+2. **8 K/V heads (h_kv = h).** Follows the official code default (`num_kv_heads=None -> num_heads`) and matches T's 8 K/V heads.
+   *Why:* then the only differences between T and D are the second set of query projections (Q2) and `lambda_proj`.
+3. **Lambda projection init N(0, 0.02).** The spec gives no init (the code uses PyTorch's default). We use the same N(0, 0.02) as every
+   other weight. *Why:* it needs no special case, and sigmoid(~0) = 0.5 means the second attention map starts out subtracted at half
+   strength, which is a neutral starting point (ablation 2 in the blog shows that dropping the lambda scale altogether gives too small an output at init).
+4. **Rotate-half RoPE** (the same module T uses) instead of the official interleaved RoPE.
+   *Why:* the two conventions differ only in *which dimensions inside one head are paired* for rotation: interleaved pairs (0,1),(2,3),...
+   while rotate-half pairs (0,hd/2),(1,hd/2+1),.... They are related by a fixed permutation of dimensions inside each head. Because the
+   q/k projection weights are learned from scratch, the network can learn either layout, and q.k dot products are unchanged by a
+   permutation applied to both q and k. Sharing T's RoPE module keeps attention the only difference between T and D.
+   Note this is about dimensions *inside* a head; it has nothing to do with the **head** pairing (0::2 / 1::2), which stays exactly as the spec says.
