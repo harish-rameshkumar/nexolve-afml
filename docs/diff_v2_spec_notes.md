@@ -85,7 +85,7 @@ Ablations in the blog (why each piece is there):
 
 [Blog] "We remove the per-head RMSNorm after differential attention. We find the per-head RMSNorm can lead to instability in later stages of large-scale pretraining of LLM."
 
-[Blog] "The (1 - lambda_init) post-multiplier of V1 is also gone": the V2 code (Section 1 pseudo-code and [Code]) has no norm and no scale after the subtraction.
+[Inference, not a quote] The V2 pseudo-code and [Code] apply nothing after the subtraction: no norm and no (1 - lambda_init) multiplier. The blog never mentions the multiplier explicitly; we infer its removal from the absence of it in the V2 code.
 (The block-level pre-norm RMSNorm before attention is unchanged: it is not part of the attention spec.)
 
 ## 6. Output projection
