@@ -20,14 +20,15 @@ Fixed batch 4 x 64, 30 steps, 3 seeds, lr in {1e-4, 3e-4}; a different fresh ran
 
 | Config | lr | Fixed-batch loss at step 20 (T / D / P) | Fresh-batch loss at step 30 minus ln(V) |
 |---|---|---|---|
-| tiny (d_model 64, 2 layers) | 1e-4 | 9.44 / 9.46 / 9.43 | +0.03 for all arms |
-| tiny | 3e-4 | 8.95 / 8.95 / 8.94 | +0.03 for all arms |
-| default (d_model 512, 6 layers) | 1e-4 | 1.62 / 0.66 / 1.39 | +0.05 to +0.14 |
-| default | 3e-4 | 0.76 / 0.23 / 0.66 | +0.05 to +0.15 |
+| tiny (d_model 64, 2 layers) | 1e-4 | 9.44 / 9.46 / 9.42 | T +0.024..+0.029, D +0.006..+0.032, P +0.022..+0.023 (all arms: +0.006 to +0.032) |
+| tiny | 3e-4 | 8.95 / 8.95 / 8.94 | T +0.029, D +0.008..+0.032, P +0.023..+0.026 (all arms: +0.008 to +0.032) |
+| default (d_model 512, 6 layers) | 1e-4 | 1.62 / 0.65 / 1.39 | T +0.048..+0.102, D +0.076..+0.146, P +0.079..+0.113 (all arms: +0.048 to +0.146) |
+| default | 3e-4 | 0.76 / 0.22 / 0.66 | T +0.042..+0.100, D +0.101..+0.147, P +0.084..+0.119 (all arms: +0.042 to +0.147) |
 
-(Means over three seeds; the seed-to-seed spread is small: for D at lr 3e-4 the three seeds give 0.22-0.23.)
+Fixed-batch losses are means over the three seeds; fresh-batch columns give the min..max over the three seeds at step 30. All numbers are exactly what
+`python scripts/experiments/fixed_batch_sweep.py --config tiny` (or `--config default`) prints. The seed-to-seed spread is small: for D at lr 3e-4 the three seeds give 0.223-0.226.
 
-- **Fresh-batch loss never drops below ln(V)** for any arm; it rises slightly (up to +0.15), which is what memorising one batch does. A leak would push it far *below* ln(V).
+- **Fresh-batch loss never drops below ln(V)** for any arm. Over every run and every evaluation the lowest value is ln(V) + 0.004 (D, tiny config; +0.033 in the default config) and the highest is ln(V) + 0.147 (D, default config). The slight rise is what memorising one batch does. A leak would push it far *below* ln(V).
 - **D's speed advantage on the fixed batch is consistent** across all 3 seeds and both learning rates at the default size, and **absent in the tiny config**.
 
 ## What explains the speed difference (exploratory, 2 seeds)
