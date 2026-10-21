@@ -76,3 +76,14 @@ class Transformer(nn.Module):
     def num_params(self) -> int:
         """Unique parameters (tied embedding counted once)."""
         return sum(p.numel() for p in self.parameters())
+
+    def lambda_values(self) -> torch.Tensor:
+        """sigmoid(lambda) from the most recent forward pass, (n_layers, B, T, H).
+
+        Only the D arm has lambda; call after a forward pass. Average over (B, T)
+        for a per-layer, per-head summary: `model.lambda_values().mean(dim=(1, 2))`.
+        """
+        vals = [getattr(b.attn, "last_lambda", None) for b in self.blocks]
+        if any(v is None for v in vals):
+            raise RuntimeError("no lambda available: arm has no lambda, or run a forward pass first")
+        return torch.stack(vals)

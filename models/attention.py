@@ -17,6 +17,16 @@ from configs.model_config import ModelConfig
 from models.layers import RotaryEmbedding
 
 
+def stable_softmax(scores: torch.Tensor) -> torch.Tensor:
+    """Softmax over the last dim, computed in at least float32.
+
+    Half-precision scores are upcast for accuracy; float64 stays float64 (needed
+    for gradcheck). The result is cast back to the input dtype.
+    """
+    acc = torch.promote_types(scores.dtype, torch.float32)
+    return torch.softmax(scores, dim=-1, dtype=acc).to(scores.dtype)
+
+
 def causal_mask(T: int, device) -> torch.Tensor:
     """(T, T) bool, True where query t may attend to key s (s <= t)."""
     return torch.tril(torch.ones(T, T, dtype=torch.bool, device=device))
@@ -63,7 +73,7 @@ class StandardAttention(nn.Module):
         # Causal mask: query t sees keys s <= t only. -inf -> weight exactly 0.
         mask = causal_mask(T, q.device)                                   # (T, S)
         scores = scores.masked_fill(~mask, float("-inf"))
-        attn = torch.softmax(scores.float(), dim=-1).to(q.dtype)          # rows sum to 1
+        attn = stable_softmax(scores)                                     # rows sum to 1
         # out[b,t,h,e] = sum_s attn[b,h,t,s] * v[b,s,h,e]
         o = torch.einsum("bhts,bshe->bthe", attn, v)                      # (B, T, H, hd)
         return o, attn
