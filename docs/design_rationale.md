@@ -14,8 +14,19 @@ would be two explanations we could not tell apart:
 2. D simply has **more parameters**, so any model with ~5.8% extra capacity would have done as well.
 
 **What P is.** P is exactly T (same attention module, same everything) except that its SwiGLU FFN is
-wider (hidden 1581 instead of 1408), chosen so P has the same total parameter count as D to within 0.011%
-(29,257,216 vs 29,260,288). So P gets the extra capacity but has *no* differential mechanism.
+wider (hidden **1584** instead of 1408), chosen so P has the same total parameter count as D to within 0.084%
+(29,284,864 vs 29,260,288, a gap of +24,576 parameters).
+
+| arm | params | vs T | FFN hidden |
+|---|---|---|---|
+| T | 27,662,848 | +0.00% | 1408 |
+| D | 29,260,288 | +5.77% | 1408 |
+| P | 29,284,864 | +5.86% | 1584 |
+
+*Why 1584.* One extra hidden unit costs 3 x 512 x 6 = 9,216 parameters, so matching D exactly would need
+1408 + 1,597,440 / 9,216 = 1581.33. We round to the nearest multiple of 16 because GPU tensor cores run
+fastest on widths that are multiples of 8/16; the price is a +0.084% gap to D (the exact integer 1581 would
+be -0.011%, but is an awkward width). A multiple of 64 (1600) would be +0.59%; all of these are far inside the 1% tolerance. So P gets the extra capacity but has *no* differential mechanism.
 
 **What question P answers.** "Is any gain of D over T explained by extra parameters alone?" Comparing D with
 P holds capacity fixed, so a difference between them is attributable to the mechanism, not the size.

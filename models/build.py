@@ -21,7 +21,7 @@ def diff_extra_params(cfg: ModelConfig) -> int:
     return cfg.n_layers * per_layer
 
 
-def matched_ffn_hidden(cfg: ModelConfig) -> int:
+def matched_ffn_hidden(cfg: ModelConfig, multiple: int = 16) -> int:
     """FFN hidden size that makes P's parameter count (nearly) equal D's.
 
     A SwiGLU FFN has three d_model x hidden matrices, so one extra hidden unit costs
@@ -30,14 +30,16 @@ def matched_ffn_hidden(cfg: ModelConfig) -> int:
 
         hidden_P = hidden_T + diff_extra_params / (3 * d_model * n_layers)
 
-    With the default config that is 1408 + 1,597,440 / 9,216 = 1581.33, rounded to the
-    nearest integer (1581, which leaves P 3,072 params = 0.0105% below D). Nothing
-    forces the hidden size to be a multiple of 64; that is only a GPU-throughput habit
-    and costs accuracy of the match (1600 would overshoot D by +0.59%). Override with
-    cfg.ffn_hidden_p if you prefer a rounder number.
+    With the default config that is 1408 + 1,597,440 / 9,216 = 1581.33. We then round
+    to the nearest multiple of 16 (GPU-friendly width for tensor cores), giving 1584,
+    which leaves P 24,576 params = +0.084% above D. (Exact rounding to 1581 would be
+    0.0105% off but is an awkward width; 1600, a multiple of 64, would be +0.59%.)
+    Pass multiple=1 for the exact integer. To pin a specific width instead, set
+    cfg.ffn_hidden_p; this stays "auto" (None) by default so P remains matched when
+    someone changes d_model, heads or layers.
     """
     exact = cfg.ffn_hidden + diff_extra_params(cfg) / (3 * cfg.d_model * cfg.n_layers)
-    return round(exact)
+    return max(multiple, round(exact / multiple) * multiple)
 
 
 def build_model(arm: str, config: ModelConfig | None = None) -> nn.Module:
