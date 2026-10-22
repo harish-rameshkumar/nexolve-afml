@@ -78,8 +78,7 @@ Check your Kaggle/Colab quotas against ~18.5 h; a 2-GPU Kaggle session can do tw
 
 ## Decisions to confirm before the main runs
 
-1. **LR 1e-3** is a standard guess for ~28M params, not a tuned value. Suggest a 500-step pilot on T at 3 LRs
-   (`--max_steps 500`, ~11 min each); pick one, then freeze it for all arms.
+1. **LR 2e-3**, chosen from 500-step pilots on T (final val loss 4.93 at 5e-4, 4.68 at 1e-3, 4.58 at 2e-3) and confirmed stable on D and P (4.39 and 4.55 at 2e-3). Frozen for all arms. Note: 2e-3 was the highest value tried, so a higher value was not tested.
 2. Seed controls init and data order (above).
 3. fp16 path, fused AdamW and memory at micro-batch 16 are **untested on a GPU** (no GPU where this was built).
    If it runs out of memory: `--micro_batch 8 --grad_accum 8` gives the identical effective batch.
