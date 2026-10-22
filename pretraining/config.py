@@ -24,7 +24,7 @@ class PretrainConfig:
     max_steps: int = 4600
 
     # ---- optimiser (AdamW) --------------------------------------------------
-    lr: float = 1e-3
+    lr: float = 2e-3
     min_lr_ratio: float = 0.1         # cosine decays to lr * min_lr_ratio
     warmup_steps: int = 200
     betas: tuple = (0.9, 0.95)
