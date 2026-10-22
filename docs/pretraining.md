@@ -38,7 +38,7 @@ Every account must read byte-identical data: `meta.json` holds sizes + sha256; `
 |---|---|
 | tokens | 4,600 steps x 65,536 = 301.5M (batch 64 seq x 1024; micro-batch 16 x accum 4) |
 | optimiser | AdamW, betas (0.9, 0.95), wd 0.1 on >=2-D weights only (not norms / embedding), clip 1.0 |
-| LR | peak 1e-3, 200 warm-up steps, cosine to 1e-4 |
+| LR | peak 2e-3, 200 warm-up steps, cosine to 2e-4 |
 | precision | fp16 autocast + GradScaler (fp32 master weights, fp32 residual stream and loss) |
 | data | FineWeb-Edu `sample-10BT`, docs joined by `<|endoftext|>`, no cross-document mask |
 | split | doc index % 100 == 0 -> val candidate (2M tokens kept); rest -> train (310M tokens built) |
