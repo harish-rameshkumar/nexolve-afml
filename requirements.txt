@@ -2,3 +2,5 @@ torch
 numpy
 pytest
 matplotlib
+tokenizers
+datasets
