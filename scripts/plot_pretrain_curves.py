@@ -42,8 +42,12 @@ def smooth(y, k=5):
     return np.array([y[max(0, i - k + 1): i + 1].mean() for i in range(len(y))])
 
 
-def plot(runs, key, rows_type, ylabel, title, out, smooth_k=1, ylim=None):
-    fig, ax = plt.subplots(figsize=(7.5, 4.6), dpi=150)
+def _draw(ax, runs, key, rows_type, smooth_k, x_min=None):
+    """One line per (arm, seed). Seed 0 is solid and bold; later seeds are thinner and fainter."""
+    seeds_by_arm = defaultdict(list)
+    for arm, seed in runs:
+        seeds_by_arm[arm].append(seed)
+    ymin, ymax = np.inf, -np.inf
     for (arm, seed), (rows, _) in sorted(runs.items()):
         r = [x for x in rows if x["type"] == rows_type]
         if not r:
@@ -51,13 +55,38 @@ def plot(runs, key, rows_type, ylabel, title, out, smooth_k=1, ylim=None):
         x = np.array([a["tokens"] for a in r]) / 1e6
         y = smooth([a[key] for a in r], smooth_k)
         c, ls = STYLE[arm]
-        ax.plot(x, y, color=c, ls=ls, lw=1.6, alpha=0.9, label=f"{NAME[arm]}" if seed == min(s for a, s in runs if a == arm) else None)
-        ax.annotate(f"{arm}{seed}", (x[-1], y[-1]), xytext=(4, 0), textcoords="offset points", fontsize=7, va="center", color="#52514e")
-    ax.set_xlabel("pretraining tokens (millions)"); ax.set_ylabel(ylabel); ax.set_title(title, loc="left", fontsize=11)
+        first = seed == min(seeds_by_arm[arm])
+        lw, alpha = (1.8, 0.95) if first else (1.2, 0.6)
+        n = len(seeds_by_arm[arm])
+        label = f"{NAME[arm]} ({n} seed{'s' if n > 1 else ''})" if first else None
+        ax.plot(x, y, color=c, ls=ls, lw=lw, alpha=alpha, label=label)
+        if x_min is not None:
+            m = x >= x_min
+            if m.any():
+                ymin, ymax = min(ymin, y[m].min()), max(ymax, y[m].max())
+    if x_min is not None:
+        ax.set_xlim(x_min, None)
+        if np.isfinite(ymin):
+            pad = 0.05 * (ymax - ymin + 1e-9)
+            ax.set_ylim(ymin - pad, ymax + pad)
+
+
+def plot(runs, key, rows_type, ylabel, title, out, smooth_k=1, ylim=None, zoom_from=None):
+    """Full-range panel; with zoom_from (millions of tokens) a second zoomed panel is added."""
+    ncols = 2 if zoom_from is not None else 1
+    fig, axes = plt.subplots(1, ncols, figsize=(7.5 * ncols if ncols > 1 else 7.5, 4.6), dpi=150)
+    axes = np.atleast_1d(axes)
+    _draw(axes[0], runs, key, rows_type, smooth_k)
     if ylim:
-        ax.set_ylim(*ylim)
-    ax.grid(alpha=0.25, lw=0.6); ax.spines[["top", "right"]].set_visible(False)
-    ax.legend(frameon=False, fontsize=8)
+        axes[0].set_ylim(*ylim)
+    axes[0].set_title(title, loc="left", fontsize=11)
+    if zoom_from is not None:
+        _draw(axes[1], runs, key, rows_type, smooth_k, x_min=zoom_from)
+        axes[1].set_title(f"Zoom: last {int(300 - zoom_from)}M tokens", loc="left", fontsize=11)
+    for ax in axes:
+        ax.set_xlabel("pretraining tokens (millions)"); ax.set_ylabel(ylabel)
+        ax.grid(alpha=0.25, lw=0.6); ax.spines[["top", "right"]].set_visible(False)
+    axes[0].legend(frameon=False, fontsize=8)
     fig.tight_layout(); fig.savefig(out); plt.close(fig)
 
 
@@ -72,9 +101,9 @@ def main():
         raise SystemExit(f"no runs found under {a.runs}")
 
     plot(runs, "val_loss", "val", "frozen validation loss (nats/token)", "Pretraining validation loss",
-         os.path.join(a.out, "val_loss_vs_tokens.png"), ylim=(None, None))
+         os.path.join(a.out, "val_loss_vs_tokens.png"), ylim=(None, None), zoom_from=200)
     plot(runs, "loss", "train", "training loss (running mean of 5 log points)", "Pretraining training loss",
-         os.path.join(a.out, "train_loss_vs_tokens.png"), smooth_k=5)
+         os.path.join(a.out, "train_loss_vs_tokens.png"), smooth_k=5, zoom_from=200)
 
     table, by_arm = [], defaultdict(list)
     for (arm, seed), (rows, done) in sorted(runs.items()):
