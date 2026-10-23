@@ -72,7 +72,7 @@ Workstream 1 is defined; the hand-offs for 2-4 are *proposed* from the project p
 | Workstream | Owns | Hands off |
 |---|---|---|
 | 1. Model architecture (this repo's `models/`) | T/D/P code, config, checkpoints format, diagnostics | `build_model`, `ModelConfig`, `save/load_checkpoint`, `lambda_log_dict`, `attention_maps` |
-| 2. Data and pretraining | tokenizer (vocab 16,384), pretraining corpus, pretraining loop | pretrained checkpoints for T, D, P (same data, optimizer, schedule) |
+| 2. Data and pretraining | tokenizer (vocab 16,384), pretraining corpus, pretraining loop | tokenizer (`tokenizer.json`); `final.pt` for every arm and seed; `step*.pt` checkpoints every 250 steps; pretraining loss curves and summary tables. Shared Drive folder: `nexolve/outputs/<arm>_s<seed>/` |
 | 3. SFT | instruction data, full-parameter SFT, logging vs cumulative assistant-response tokens | SFT checkpoints at each token budget; lambda logs for D |
 | 4. Evaluation | instruction-following metrics, plots, statistics across arms/seeds | final comparison of T vs D vs P |
 
