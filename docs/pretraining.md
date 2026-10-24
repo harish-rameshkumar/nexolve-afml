@@ -69,6 +69,23 @@ Logged: val loss, train loss, LR, grad norm, loss scale, tokens/s, estimated tra
 Order runs seed-major (T, D, P for seed 0, then seed 1, ...): if the budget runs out you still have complete paired seeds (2 minimum).
 Check your Kaggle/Colab quotas against ~18.5 h; a 2-GPU Kaggle session can do two arms at once.
 
+
+## Results (measured, 2 seeds per arm)
+
+Final frozen validation loss (4,600 steps, 301.5M tokens, LR 2e-3, one T4 GPU per run):
+
+| Arm | Seed 0 / seed 1 val loss | Mean val loss | Training GPU-hours | Mean tokens/s | Training FLOPs |
+|---|---|---|---|---|---|
+| T | 3.5225 / 3.5191 | 3.5208 | 1.81 / 1.87 | 46.3k / 44.7k | 6.14e16 |
+| D | 3.5152 / 3.5209 | 3.5181 | 2.34 / 2.24 | 35.8k / 37.4k | 7.57e16 |
+| P | 3.5193 / 3.5058 | 3.5125 | 2.00 / 2.10 | 42.0k / 39.9k | 6.44e16 |
+
+All six runs finished. Training time totals 12.36 GPU-hours, plus a few percent for evaluation and checkpoint saving (`total_gpu_h` in each `done.json`). The two seeds of one arm differ by up to 0.0135, as much as the gaps between arm means, so the arms ended at the same pretraining loss to within seed noise.
+
+Five runs were trained on Google Colab and P seed 1 on Kaggle, using byte-identical data (SHA-256 of `train.bin`, `val.bin` and `tokenizer.json` matches `meta.json`). Figures and tables: `scripts/plot_pretrain_curves.py` writes `val_loss_vs_tokens.png`, `train_loss_vs_tokens.png`, `pretrain_summary.csv` and `pretrain_arm_means.csv`. Checkpoints are on the team drive under `nexolve/outputs/<arm>_s<seed>/`. Build the `final.pt` path from the folder name: the `final_checkpoint` field in `P_s1/done.json` holds a Kaggle path.
+
+
+
 ## For the other workstreams
 
 * **WS3:** chat tokens are reserved with fixed ids: `<|endoftext|>`=0 (also end-of-response), `<|pad|>`=1, `<|system|>`=2,
