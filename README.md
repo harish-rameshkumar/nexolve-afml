@@ -29,7 +29,6 @@ Install the project dependencies, then run the tests and a small evaluation demo
 
 ```sh
 python -m pip install -r requirements.txt
-python -m pip install -r requirements-ws2.txt pytest
 python -m pytest tests sft/test_masked_loss.py -q
 python -m evaluation.demo --out outputs/evaluation-demo
 ```
