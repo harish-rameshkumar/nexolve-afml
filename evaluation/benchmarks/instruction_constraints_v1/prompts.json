@@ -1,0 +1,552 @@
+[
+  {
+    "id": "candidate_start_word_000",
+    "family": "start_word",
+    "prompt": "Write about a pleasant day. Start your response with the word Apple.",
+    "check": {
+      "kind": "start_word",
+      "value": "Apple"
+    },
+    "positive_control": "Apple is nice.",
+    "negative_control": "My Apple is nice."
+  },
+  {
+    "id": "candidate_start_word_001",
+    "family": "start_word",
+    "prompt": "Write about a quiet place. Start your response with the word River.",
+    "check": {
+      "kind": "start_word",
+      "value": "River"
+    },
+    "positive_control": "River is nice.",
+    "negative_control": "My River is nice."
+  },
+  {
+    "id": "candidate_start_word_002",
+    "family": "start_word",
+    "prompt": "Write about a simple meal. Start your response with the word Garden.",
+    "check": {
+      "kind": "start_word",
+      "value": "Garden"
+    },
+    "positive_control": "Garden is nice.",
+    "negative_control": "My Garden is nice."
+  },
+  {
+    "id": "candidate_start_word_003",
+    "family": "start_word",
+    "prompt": "Write about a friendly person. Start your response with the word Music.",
+    "check": {
+      "kind": "start_word",
+      "value": "Music"
+    },
+    "positive_control": "Music is nice.",
+    "negative_control": "My Music is nice."
+  },
+  {
+    "id": "candidate_start_word_004",
+    "family": "start_word",
+    "prompt": "Write about a walk outside. Start your response with the word Friend.",
+    "check": {
+      "kind": "start_word",
+      "value": "Friend"
+    },
+    "positive_control": "Friend is nice.",
+    "negative_control": "My Friend is nice."
+  },
+  {
+    "id": "candidate_start_word_005",
+    "family": "start_word",
+    "prompt": "Write about a favorite activity. Start your response with the word Sun.",
+    "check": {
+      "kind": "start_word",
+      "value": "Sun"
+    },
+    "positive_control": "Sun is nice.",
+    "negative_control": "My Sun is nice."
+  },
+  {
+    "id": "candidate_start_word_006",
+    "family": "start_word",
+    "prompt": "Write about an animal. Start your response with the word Book.",
+    "check": {
+      "kind": "start_word",
+      "value": "Book"
+    },
+    "positive_control": "Book is nice.",
+    "negative_control": "My Book is nice."
+  },
+  {
+    "id": "candidate_start_word_007",
+    "family": "start_word",
+    "prompt": "Write about a small town. Start your response with the word Tree.",
+    "check": {
+      "kind": "start_word",
+      "value": "Tree"
+    },
+    "positive_control": "Tree is nice.",
+    "negative_control": "My Tree is nice."
+  },
+  {
+    "id": "candidate_start_word_008",
+    "family": "start_word",
+    "prompt": "Write about a useful object. Start your response with the word Water.",
+    "check": {
+      "kind": "start_word",
+      "value": "Water"
+    },
+    "positive_control": "Water is nice.",
+    "negative_control": "My Water is nice."
+  },
+  {
+    "id": "candidate_start_word_009",
+    "family": "start_word",
+    "prompt": "Write about a happy moment. Start your response with the word Home.",
+    "check": {
+      "kind": "start_word",
+      "value": "Home"
+    },
+    "positive_control": "Home is nice.",
+    "negative_control": "My Home is nice."
+  },
+  {
+    "id": "candidate_keyword_000",
+    "family": "keyword",
+    "prompt": "Write about a pleasant day. Include the word apple in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "apple"
+    },
+    "positive_control": "I like apple.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_001",
+    "family": "keyword",
+    "prompt": "Write about a quiet place. Include the word river in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "river"
+    },
+    "positive_control": "I like river.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_002",
+    "family": "keyword",
+    "prompt": "Write about a simple meal. Include the word garden in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "garden"
+    },
+    "positive_control": "I like garden.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_003",
+    "family": "keyword",
+    "prompt": "Write about a friendly person. Include the word music in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "music"
+    },
+    "positive_control": "I like music.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_004",
+    "family": "keyword",
+    "prompt": "Write about a walk outside. Include the word friend in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "friend"
+    },
+    "positive_control": "I like friend.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_005",
+    "family": "keyword",
+    "prompt": "Write about a favorite activity. Include the word sun in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "sun"
+    },
+    "positive_control": "I like sun.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_006",
+    "family": "keyword",
+    "prompt": "Write about an animal. Include the word book in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "book"
+    },
+    "positive_control": "I like book.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_007",
+    "family": "keyword",
+    "prompt": "Write about a small town. Include the word tree in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "tree"
+    },
+    "positive_control": "I like tree.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_008",
+    "family": "keyword",
+    "prompt": "Write about a useful object. Include the word water in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "water"
+    },
+    "positive_control": "I like water.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_keyword_009",
+    "family": "keyword",
+    "prompt": "Write about a happy moment. Include the word home in your response.",
+    "check": {
+      "kind": "keyword",
+      "value": "home"
+    },
+    "positive_control": "I like home.",
+    "negative_control": "It is nice."
+  },
+  {
+    "id": "candidate_lowercase_000",
+    "family": "lowercase",
+    "prompt": "Write about a pleasant day. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_001",
+    "family": "lowercase",
+    "prompt": "Write about a quiet place. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_002",
+    "family": "lowercase",
+    "prompt": "Write about a simple meal. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_003",
+    "family": "lowercase",
+    "prompt": "Write about a friendly person. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_004",
+    "family": "lowercase",
+    "prompt": "Write about a walk outside. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_005",
+    "family": "lowercase",
+    "prompt": "Write about a favorite activity. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_006",
+    "family": "lowercase",
+    "prompt": "Write about an animal. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_007",
+    "family": "lowercase",
+    "prompt": "Write about a small town. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_008",
+    "family": "lowercase",
+    "prompt": "Write about a useful object. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_lowercase_009",
+    "family": "lowercase",
+    "prompt": "Write about a happy moment. Use lowercase letters only.",
+    "check": {
+      "kind": "lowercase"
+    },
+    "positive_control": "it is a nice day.",
+    "negative_control": "It is a nice day."
+  },
+  {
+    "id": "candidate_word_range_000",
+    "family": "word_range",
+    "prompt": "Write about a pleasant day. Use between 3 and 12 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 3,
+      "max": 12
+    },
+    "positive_control": "nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_001",
+    "family": "word_range",
+    "prompt": "Write about a quiet place. Use between 5 and 20 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 5,
+      "max": 20
+    },
+    "positive_control": "nice nice nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_002",
+    "family": "word_range",
+    "prompt": "Write about a simple meal. Use between 10 and 30 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 10,
+      "max": 30
+    },
+    "positive_control": "nice nice nice nice nice nice nice nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_003",
+    "family": "word_range",
+    "prompt": "Write about a friendly person. Use between 3 and 12 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 3,
+      "max": 12
+    },
+    "positive_control": "nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_004",
+    "family": "word_range",
+    "prompt": "Write about a walk outside. Use between 5 and 20 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 5,
+      "max": 20
+    },
+    "positive_control": "nice nice nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_005",
+    "family": "word_range",
+    "prompt": "Write about a favorite activity. Use between 10 and 30 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 10,
+      "max": 30
+    },
+    "positive_control": "nice nice nice nice nice nice nice nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_006",
+    "family": "word_range",
+    "prompt": "Write about an animal. Use between 3 and 12 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 3,
+      "max": 12
+    },
+    "positive_control": "nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_007",
+    "family": "word_range",
+    "prompt": "Write about a small town. Use between 5 and 20 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 5,
+      "max": 20
+    },
+    "positive_control": "nice nice nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_008",
+    "family": "word_range",
+    "prompt": "Write about a useful object. Use between 10 and 30 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 10,
+      "max": 30
+    },
+    "positive_control": "nice nice nice nice nice nice nice nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_word_range_009",
+    "family": "word_range",
+    "prompt": "Write about a happy moment. Use between 3 and 12 words, inclusive.",
+    "check": {
+      "kind": "word_range",
+      "min": 3,
+      "max": 12
+    },
+    "positive_control": "nice nice nice",
+    "negative_control": "nice"
+  },
+  {
+    "id": "candidate_end_phrase_000",
+    "family": "end_phrase",
+    "prompt": "Write about a pleasant day. End your response with the exact phrase \"thank you\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "thank you"
+    },
+    "positive_control": "It is nice. thank you",
+    "negative_control": "It is nice. thank you."
+  },
+  {
+    "id": "candidate_end_phrase_001",
+    "family": "end_phrase",
+    "prompt": "Write about a quiet place. End your response with the exact phrase \"the end\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "the end"
+    },
+    "positive_control": "It is nice. the end",
+    "negative_control": "It is nice. the end."
+  },
+  {
+    "id": "candidate_end_phrase_002",
+    "family": "end_phrase",
+    "prompt": "Write about a simple meal. End your response with the exact phrase \"that is all\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "that is all"
+    },
+    "positive_control": "It is nice. that is all",
+    "negative_control": "It is nice. that is all."
+  },
+  {
+    "id": "candidate_end_phrase_003",
+    "family": "end_phrase",
+    "prompt": "Write about a friendly person. End your response with the exact phrase \"good day\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "good day"
+    },
+    "positive_control": "It is nice. good day",
+    "negative_control": "It is nice. good day."
+  },
+  {
+    "id": "candidate_end_phrase_004",
+    "family": "end_phrase",
+    "prompt": "Write about a walk outside. End your response with the exact phrase \"see you soon\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "see you soon"
+    },
+    "positive_control": "It is nice. see you soon",
+    "negative_control": "It is nice. see you soon."
+  },
+  {
+    "id": "candidate_end_phrase_005",
+    "family": "end_phrase",
+    "prompt": "Write about a favorite activity. End your response with the exact phrase \"thank you\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "thank you"
+    },
+    "positive_control": "It is nice. thank you",
+    "negative_control": "It is nice. thank you."
+  },
+  {
+    "id": "candidate_end_phrase_006",
+    "family": "end_phrase",
+    "prompt": "Write about an animal. End your response with the exact phrase \"the end\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "the end"
+    },
+    "positive_control": "It is nice. the end",
+    "negative_control": "It is nice. the end."
+  },
+  {
+    "id": "candidate_end_phrase_007",
+    "family": "end_phrase",
+    "prompt": "Write about a small town. End your response with the exact phrase \"that is all\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "that is all"
+    },
+    "positive_control": "It is nice. that is all",
+    "negative_control": "It is nice. that is all."
+  },
+  {
+    "id": "candidate_end_phrase_008",
+    "family": "end_phrase",
+    "prompt": "Write about a useful object. End your response with the exact phrase \"good day\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "good day"
+    },
+    "positive_control": "It is nice. good day",
+    "negative_control": "It is nice. good day."
+  },
+  {
+    "id": "candidate_end_phrase_009",
+    "family": "end_phrase",
+    "prompt": "Write about a happy moment. End your response with the exact phrase \"see you soon\".",
+    "check": {
+      "kind": "end_phrase",
+      "value": "see you soon"
+    },
+    "positive_control": "It is nice. see you soon",
+    "negative_control": "It is nice. see you soon."
+  }
+]

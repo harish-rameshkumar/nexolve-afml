@@ -1,0 +1,24 @@
+{
+  "purpose": "descriptive_final_grid",
+  "benchmark_status": "Frozen before final scoring. Development showed weak sensitivity and pervasive truncation. Descriptive evidence only.",
+  "calibration": "T seed 0 old pilot vs parent, 8/50 vs 7/50, cap hits 50/50 both. Candidate prompts held out.",
+  "max_new_tokens": 64,
+  "stop_token_ids": [
+    5
+  ],
+  "prompt_template": "nexolve_ws3_v1",
+  "batch_size": 8,
+  "applied_response_token_budgets": [
+    0,
+    33000,
+    67000,
+    100000
+  ],
+  "threshold": null,
+  "lambda_probe": "Summarize how trees change in autumn.",
+  "scoring": "Strict pass on decoded output at stop or cap. Report caps separately.",
+  "asset_hashes": {
+    "prompts.json": "0c80b87e380257e7130a3ef2d8f0442da743b4721a502375fd8524240d677ce9",
+    "scorer.py": "3d588c8b936053d9463cdacb974d84c51a5e2a916f770bc4c55d7ae04901db8c"
+  }
+}
