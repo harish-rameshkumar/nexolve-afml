@@ -1,0 +1,17 @@
+[
+  {
+    "id": "ref-1",
+    "prompt": "What is the opposite of hot?",
+    "response": "Cold."
+  },
+  {
+    "id": "ref-2",
+    "prompt": "Name a fruit that grows on a tree.",
+    "response": "An apple grows on a tree."
+  },
+  {
+    "id": "ref-3",
+    "prompt": "Add two and three.",
+    "response": "Two plus three is five."
+  }
+]

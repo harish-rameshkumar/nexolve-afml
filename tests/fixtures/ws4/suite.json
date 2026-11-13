@@ -1,0 +1,237 @@
+[
+  {
+    "id": "literal-1",
+    "family": "exact",
+    "prompt": "Reply with exactly the word amber. Do not add spaces or punctuation.",
+    "checks": [
+      {
+        "kind": "exact",
+        "value": "amber"
+      }
+    ],
+    "passing_response": "amber",
+    "failing_responses": [
+      "Amber",
+      "amber.",
+      " amber",
+      ""
+    ]
+  },
+  {
+    "id": "literal-2",
+    "family": "exact",
+    "prompt": "Output only the three characters Z7Q, with no other text.",
+    "checks": [
+      {
+        "kind": "exact",
+        "value": "Z7Q"
+      }
+    ],
+    "passing_response": "Z7Q",
+    "failing_responses": [
+      "Z7Q\n",
+      "Here: Z7Q"
+    ]
+  },
+  {
+    "id": "lower-1",
+    "family": "case",
+    "prompt": "Write a nonempty lowercase phrase containing the exact word orbit. Do not use any uppercase letters.",
+    "checks": [
+      {
+        "kind": "lowercase"
+      },
+      {
+        "kind": "contains",
+        "value": "orbit"
+      }
+    ],
+    "passing_response": "quiet orbit",
+    "failing_responses": [
+      "quiet Orbit",
+      "ORBIT",
+      "123",
+      ""
+    ]
+  },
+  {
+    "id": "upper-1",
+    "family": "case",
+    "prompt": "Write a nonempty uppercase phrase containing the exact word CEDAR. Do not use any lowercase letters.",
+    "checks": [
+      {
+        "kind": "uppercase"
+      },
+      {
+        "kind": "contains",
+        "value": "CEDAR"
+      }
+    ],
+    "passing_response": "CEDAR TREE",
+    "failing_responses": [
+      "cedar tree",
+      "Cedar",
+      "123"
+    ]
+  },
+  {
+    "id": "lines-1",
+    "family": "lines",
+    "prompt": "Write exactly two nonempty lines. Separate them with one newline. Do not add a final newline or use carriage returns.",
+    "checks": [
+      {
+        "kind": "lines",
+        "value": 2
+      }
+    ],
+    "passing_response": "one\ntwo",
+    "failing_responses": [
+      "one",
+      "one\ntwo\n",
+      "\ntwo",
+      "one\r\ntwo"
+    ]
+  },
+  {
+    "id": "lines-2",
+    "family": "multi",
+    "prompt": "Write exactly three nonempty lowercase lines. Use LF newlines, no carriage returns, and no final newline.",
+    "checks": [
+      {
+        "kind": "lines",
+        "value": 3
+      },
+      {
+        "kind": "lowercase"
+      }
+    ],
+    "passing_response": "red\ngreen\nblue",
+    "failing_responses": [
+      "red\ngreen",
+      "RED\ngreen\nblue",
+      "red\ngreen\nblue\n"
+    ]
+  },
+  {
+    "id": "json-1",
+    "family": "json",
+    "prompt": "Return a valid JSON object with exactly the keys \"color\" and \"shape\". Do not include any prose or code fences. Do not repeat keys.",
+    "checks": [
+      {
+        "kind": "json_keys",
+        "value": [
+          "color",
+          "shape"
+        ]
+      }
+    ],
+    "passing_response": "{\"color\":\"blue\",\"shape\":\"circle\"}",
+    "failing_responses": [
+      "{\"color\":\"blue\"}",
+      "{\"color\":\"blue\",\"shape\":\"circle\",\"extra\":1}",
+      "```json\n{}\n```",
+      "{\"color\":1,\"color\":2,\"shape\":3}"
+    ]
+  },
+  {
+    "id": "json-2",
+    "family": "json",
+    "prompt": "Return a valid JSON object with exactly the key \"count\" and no repeated keys. Do not include any prose or code fences.",
+    "checks": [
+      {
+        "kind": "json_keys",
+        "value": [
+          "count"
+        ]
+      }
+    ],
+    "passing_response": "{\"count\":3}",
+    "failing_responses": [
+      "[3]",
+      "{\"count\":NaN}",
+      "{\"count\":1} extra"
+    ]
+  },
+  {
+    "id": "literal-3",
+    "family": "exact",
+    "prompt": "Reply with exactly hello moon, using lowercase and one space between the words.",
+    "checks": [
+      {
+        "kind": "exact",
+        "value": "hello moon"
+      }
+    ],
+    "passing_response": "hello moon",
+    "failing_responses": [
+      "hello  moon",
+      "hello moon!",
+      "Hello moon"
+    ]
+  },
+  {
+    "id": "avoid-1",
+    "family": "multi",
+    "prompt": "Write a nonempty lowercase phrase containing the literal substring \"river\" and excluding the literal substring \"ocean\".",
+    "checks": [
+      {
+        "kind": "contains",
+        "value": "river"
+      },
+      {
+        "kind": "forbids",
+        "value": "ocean"
+      },
+      {
+        "kind": "lowercase"
+      }
+    ],
+    "passing_response": "river bank",
+    "failing_responses": [
+      "ocean river",
+      "RIVER",
+      ""
+    ]
+  },
+  {
+    "id": "lines-3",
+    "family": "multi",
+    "prompt": "Write exactly two nonempty lowercase LF-separated lines, containing the substring \"stone\" somewhere. Do not add a final newline or carriage return.",
+    "checks": [
+      {
+        "kind": "lines",
+        "value": 2
+      },
+      {
+        "kind": "lowercase"
+      },
+      {
+        "kind": "contains",
+        "value": "stone"
+      }
+    ],
+    "passing_response": "stone\npath",
+    "failing_responses": [
+      "stone path",
+      "Stone\npath",
+      "stone\npath\n"
+    ]
+  },
+  {
+    "id": "literal-4",
+    "family": "exact",
+    "prompt": "Print exactly 42 with no whitespace or additional characters.",
+    "checks": [
+      {
+        "kind": "exact",
+        "value": "42"
+      }
+    ],
+    "passing_response": "42",
+    "failing_responses": [
+      "42.",
+      " 42",
+      "42\n"
+    ]
+  }
+]

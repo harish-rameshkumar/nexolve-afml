@@ -1,0 +1,336 @@
+{
+  "schema_version": 1,
+  "experiment": "primary",
+  "unique_count_includes_eos": true,
+  "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])",
+  "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+  "near_duplicate_review": "REPLACE_WITH_DATE_METHOD_AND_REVIEW_FINDINGS",
+  "checkpoints": [
+    {
+      "arm": "T",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "pretrain",
+      "step": 4600,
+      "target_response_tokens": 0,
+      "unique_response_tokens": 0,
+      "processed_response_tokens": 0,
+      "checkpoint_path": "../outputs/pretrain/T_s0/final.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])",
+      "pretrain_run_config": {
+        "path": "../outputs/pretrain/T_s0/run_config.json",
+        "sha256": "REPLACE_WITH_FILE_SHA256"
+      }
+    },
+    {
+      "arm": "T",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "sft",
+      "step": 1,
+      "target_response_tokens": 100000,
+      "unique_response_tokens": 100000,
+      "processed_response_tokens": 100000,
+      "checkpoint_path": "../outputs/sft/T_s0/budget100000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "T",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "sft",
+      "step": 2,
+      "target_response_tokens": 250000,
+      "unique_response_tokens": 250000,
+      "processed_response_tokens": 250000,
+      "checkpoint_path": "../outputs/sft/T_s0/budget250000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "T",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "pretrain",
+      "step": 4600,
+      "target_response_tokens": 0,
+      "unique_response_tokens": 0,
+      "processed_response_tokens": 0,
+      "checkpoint_path": "../outputs/pretrain/T_s1/final.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])",
+      "pretrain_run_config": {
+        "path": "../outputs/pretrain/T_s1/run_config.json",
+        "sha256": "REPLACE_WITH_FILE_SHA256"
+      }
+    },
+    {
+      "arm": "T",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "sft",
+      "step": 1,
+      "target_response_tokens": 100000,
+      "unique_response_tokens": 100000,
+      "processed_response_tokens": 100000,
+      "checkpoint_path": "../outputs/sft/T_s1/budget100000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "T",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "sft",
+      "step": 2,
+      "target_response_tokens": 250000,
+      "unique_response_tokens": 250000,
+      "processed_response_tokens": 250000,
+      "checkpoint_path": "../outputs/sft/T_s1/budget250000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "D",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "pretrain",
+      "step": 4600,
+      "target_response_tokens": 0,
+      "unique_response_tokens": 0,
+      "processed_response_tokens": 0,
+      "checkpoint_path": "../outputs/pretrain/D_s0/final.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])",
+      "pretrain_run_config": {
+        "path": "../outputs/pretrain/D_s0/run_config.json",
+        "sha256": "REPLACE_WITH_FILE_SHA256"
+      }
+    },
+    {
+      "arm": "D",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "sft",
+      "step": 1,
+      "target_response_tokens": 100000,
+      "unique_response_tokens": 100000,
+      "processed_response_tokens": 100000,
+      "checkpoint_path": "../outputs/sft/D_s0/budget100000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "D",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "sft",
+      "step": 2,
+      "target_response_tokens": 250000,
+      "unique_response_tokens": 250000,
+      "processed_response_tokens": 250000,
+      "checkpoint_path": "../outputs/sft/D_s0/budget250000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "D",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "pretrain",
+      "step": 4600,
+      "target_response_tokens": 0,
+      "unique_response_tokens": 0,
+      "processed_response_tokens": 0,
+      "checkpoint_path": "../outputs/pretrain/D_s1/final.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])",
+      "pretrain_run_config": {
+        "path": "../outputs/pretrain/D_s1/run_config.json",
+        "sha256": "REPLACE_WITH_FILE_SHA256"
+      }
+    },
+    {
+      "arm": "D",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "sft",
+      "step": 1,
+      "target_response_tokens": 100000,
+      "unique_response_tokens": 100000,
+      "processed_response_tokens": 100000,
+      "checkpoint_path": "../outputs/sft/D_s1/budget100000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "D",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "sft",
+      "step": 2,
+      "target_response_tokens": 250000,
+      "unique_response_tokens": 250000,
+      "processed_response_tokens": 250000,
+      "checkpoint_path": "../outputs/sft/D_s1/budget250000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "P",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "pretrain",
+      "step": 4600,
+      "target_response_tokens": 0,
+      "unique_response_tokens": 0,
+      "processed_response_tokens": 0,
+      "checkpoint_path": "../outputs/pretrain/P_s0/final.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])",
+      "pretrain_run_config": {
+        "path": "../outputs/pretrain/P_s0/run_config.json",
+        "sha256": "REPLACE_WITH_FILE_SHA256"
+      }
+    },
+    {
+      "arm": "P",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "sft",
+      "step": 1,
+      "target_response_tokens": 100000,
+      "unique_response_tokens": 100000,
+      "processed_response_tokens": 100000,
+      "checkpoint_path": "../outputs/sft/P_s0/budget100000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "P",
+      "pretrain_seed": 0,
+      "sft_seed": 0,
+      "phase": "sft",
+      "step": 2,
+      "target_response_tokens": 250000,
+      "unique_response_tokens": 250000,
+      "processed_response_tokens": 250000,
+      "checkpoint_path": "../outputs/sft/P_s0/budget250000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "P",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "pretrain",
+      "step": 4600,
+      "target_response_tokens": 0,
+      "unique_response_tokens": 0,
+      "processed_response_tokens": 0,
+      "checkpoint_path": "../outputs/pretrain/P_s1/final.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])",
+      "pretrain_run_config": {
+        "path": "../outputs/pretrain/P_s1/run_config.json",
+        "sha256": "REPLACE_WITH_FILE_SHA256"
+      }
+    },
+    {
+      "arm": "P",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "sft",
+      "step": 1,
+      "target_response_tokens": 100000,
+      "unique_response_tokens": 100000,
+      "processed_response_tokens": 100000,
+      "checkpoint_path": "../outputs/sft/P_s1/budget100000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    },
+    {
+      "arm": "P",
+      "pretrain_seed": 1,
+      "sft_seed": 1,
+      "phase": "sft",
+      "step": 2,
+      "target_response_tokens": 250000,
+      "unique_response_tokens": 250000,
+      "processed_response_tokens": 250000,
+      "checkpoint_path": "../outputs/sft/P_s1/budget250000.pt",
+      "checkpoint_sha256": "REPLACE_WITH_FILE_SHA256",
+      "parent_pretrain_sha256": "REPLACE_WITH_PARENT_SHA256",
+      "sft_stream_sha256": "REPLACE_WITH_SHA256_OF_ORDERED_SFT_TRAIN_JSON",
+      "chat_template_sha256": "COMPUTE canonical_hash(protocol[\"template\"])"
+    }
+  ],
+  "tokenizer": {
+    "path": "../data/pretrain/tokenizer.json",
+    "sha256": "REPLACE_WITH_FILE_SHA256"
+  },
+  "suite": {
+    "path": "../data/eval/strict.json",
+    "sha256": "REPLACE_WITH_FILE_SHA256"
+  },
+  "references": {
+    "path": "../data/eval/references.json",
+    "sha256": "REPLACE_WITH_FILE_SHA256"
+  },
+  "val_tokens": {
+    "path": "../data/pretrain/val.bin",
+    "sha256": "REPLACE_WITH_FILE_SHA256"
+  },
+  "val_meta": {
+    "path": "../data/pretrain/meta.json",
+    "sha256": "REPLACE_WITH_FILE_SHA256"
+  },
+  "sft_train": {
+    "path": "../data/sft/ordered_train.json",
+    "sha256": "REPLACE_WITH_FILE_SHA256"
+  },
+  "development": {
+    "path": "../data/eval/development.json",
+    "sha256": "REPLACE_WITH_FILE_SHA256"
+  },
+  "sft_recipe": {
+    "path": "../data/sft/recipe.json",
+    "sha256": "REPLACE_WITH_FILE_SHA256"
+  }
+}

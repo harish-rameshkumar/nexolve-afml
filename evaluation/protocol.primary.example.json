@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "status": "provisional",
+  "experiment": "primary",
+  "paired_seeds": [
+    0,
+    1
+  ],
+  "budgets": [
+    0,
+    100000,
+    250000
+  ],
+  "generation_cap": 128,
+  "stop_ids": [
+    0
+  ],
+  "include_eos_nll": true,
+  "threshold": 0.5,
+  "amp": "none",
+  "grid_policy": "exact",
+  "template": {
+    "name": "nexolve_single_turn_v1",
+    "ws3_confirmed": false
+  },
+  "unique_count_includes_eos": true
+}
