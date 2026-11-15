@@ -11,9 +11,10 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from models import load_checkpoint
 
-DATA_ROOT = Path(r"C:\Users\HARSHIT VAISH\projects\nexolve-data")
-CHECKPOINT = DATA_ROOT / "outputs" / "T_s0" / "final.pt"
-PILOT = DATA_ROOT / "sft" / "pilot.jsonl"
+from sft.paths import DATA_DIR, PRETRAIN_DIR
+
+CHECKPOINT = PRETRAIN_DIR / "T_s0" / "final.pt"
+PILOT = DATA_DIR / "pilot.jsonl"
 
 device = "cuda"
 torch.manual_seed(0)

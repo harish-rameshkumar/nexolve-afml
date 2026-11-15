@@ -11,12 +11,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 
 from models import load_checkpoint
 
-DATA_DIR = Path(
-    r"C:\Users\HARSHIT VAISH\projects\nexolve-data\sft"
-)
-CHECKPOINT = Path(
-    r"C:\Users\HARSHIT VAISH\projects\nexolve-data\outputs\T_s0\final.pt"
-)
+from sft.paths import DATA_DIR, PRETRAIN_DIR
+
+CHECKPOINT = PRETRAIN_DIR / "T_s0" / "final.pt"
 TRAIN_FILE = DATA_DIR / "pilot_train.jsonl"
 
 LEARNING_RATE = 0.002

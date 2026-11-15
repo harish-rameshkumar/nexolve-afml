@@ -11,10 +11,9 @@ sys.path.insert(0, str(PROJECT_ROOT))
 from models import load_checkpoint
 from models.diagnostics import lambda_log_dict
 
-DATA_ROOT = Path(r"C:\Users\HARSHIT VAISH\projects\nexolve-data")
-SFT_ROOT = DATA_ROOT / "sft_outputs"
-VAL_FILE = DATA_ROOT / "sft" / "pilot_val.jsonl"
-TOKENIZER_FILE = DATA_ROOT / "pretrain" / "tokenizer.json"
+from sft.paths import DATA_DIR, OUTPUT_DIR as SFT_ROOT, TOKENIZER_PATH as TOKENIZER_FILE
+
+VAL_FILE = DATA_DIR / "pilot_val.jsonl"
 OUTPUT_FILE = SFT_ROOT / "lambda_post_training.json"
 
 

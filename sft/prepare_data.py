@@ -8,16 +8,12 @@ from pathlib import Path
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
-from datasets import load_dataset
 from pretraining.tokenizer import load_tokenizer
+from sft.paths import DATA_DIR as OUTPUT_DIR, TOKENIZER_PATH
 
 # ---------- Configuration ----------
 DATASET_NAME = "HuggingFaceTB/smoltalk"
 DATASET_CONFIG = "smol-magpie-ultra"
-
-DATA_ROOT = Path(r"C:\Users\HARSHIT VAISH\projects\nexolve-data")
-TOKENIZER_PATH = DATA_ROOT / "pretrain" / "tokenizer.json"
-OUTPUT_DIR = DATA_ROOT / "sft"
 
 MAX_RECORDS = 10_000
 MAX_USER_TOKENS = 200
@@ -29,10 +25,6 @@ ASSISTANT_ID = 4
 END_ID = 5
 PAD_ID = 1
 IGNORE_INDEX = -100
-
-# This is a pilot dataset, not the final experiment dataset.
-OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
 
 def is_english_enough(text):
     """Conservative heuristic; this is not a language-identification model."""
@@ -49,6 +41,11 @@ def token_ids(tokenizer, text):
 
 
 def main():
+    if not TOKENIZER_PATH.is_file():
+        raise SystemExit(f"Tokenizer missing: {TOKENIZER_PATH}. See docs/supervised-fine-tuning.md.")
+    from datasets import load_dataset
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     tokenizer = load_tokenizer(
         str(TOKENIZER_PATH),
         vocab_size=16384,

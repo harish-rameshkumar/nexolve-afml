@@ -18,17 +18,8 @@ PROJECT_ROOT = Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(PROJECT_ROOT))
 
 from models import load_checkpoint, save_checkpoint
+from sft.paths import DATA_DIR, OUTPUT_DIR, PRETRAIN_DIR
 
-
-DATA_DIR = Path(
-    r"C:\Users\HARSHIT VAISH\projects\nexolve-data\sft"
-)
-PRETRAIN_DIR = Path(
-    r"C:\Users\HARSHIT VAISH\projects\nexolve-data\outputs"
-)
-OUTPUT_DIR = Path(
-    r"C:\Users\HARSHIT VAISH\projects\nexolve-data\sft_outputs"
-)
 
 DEFAULT_LR = 1e-5
 DEFAULT_BUDGET = 100_000

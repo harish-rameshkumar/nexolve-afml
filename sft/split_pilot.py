@@ -2,11 +2,14 @@
 import hashlib
 import json
 import random
+import sys
 from pathlib import Path
 
-DATA_DIR = Path(
-    r"C:\Users\HARSHIT VAISH\projects\nexolve-data\sft"
-)
+if __package__ in (None, ""):
+    sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
+
+from sft.paths import DATA_DIR
+
 
 INPUT_FILE = DATA_DIR / "pilot.jsonl"
 TRAIN_FILE = DATA_DIR / "pilot_train.jsonl"
