@@ -99,12 +99,24 @@ def generate_batch(model,prefixes,cap,stop):
     return [dict(generated_ids=ids,stop_reason=r,generated_token_count=len(ids),cap_hit=r=='cap')
             for ids,r in zip(result,reasons)]
 
+def asset_paths(asset_root):
+    return (
+        asset_root / '01_TRAINING_RECORDS' / 'training_record.json',
+        asset_root / '04_DATA_AND_TOKENIZER' / 'tokenizer.json',
+    )
+
+
 def load_target(record,name,budget,asset_root=ROOT):
     base=asset_root/'work/ws3-final'
     run=record['runs'][name]
     parent=record['pretrained_parents'][name]
     row=next((r for r in run['snapshots'] if r['requested_budget']==budget),None)
     path=(base/name/f'sft_{budget}.pt') if budget else (asset_root/'work/handoff'/f'parent_{name}'/'final.pt')
+    if asset_paths(asset_root)[0].is_file():
+        path = (asset_root / '03_SFT_CHECKPOINTS' / name / 'checkpoints' / f'sft_{budget}.pt'
+                if budget else asset_root / '02_PRETRAINED_CHECKPOINTS' / name / 'final.pt')
+    if not path.is_file():
+        raise FileNotFoundError(f'Missing checkpoint: {path}. See docs/instruction-evaluation.md.')
     expected=row['sha256'] if budget else parent['sha256']
     require(sha(path)==expected,f'{name} at {budget}: hash mismatch')
     state=torch.load(path,map_location='cpu',weights_only=True)
@@ -169,13 +181,18 @@ def main():
     cli.add_argument('--protocol',type=Path,required=True)
     cli.add_argument('--out',type=Path,required=True)
     cli.add_argument('--asset-root', type=Path, required=True)
-    cli.add_argument('--smoke',action='store_true')
+    mode = cli.add_mutually_exclusive_group()
+    mode.add_argument('--smoke',action='store_true')
+    mode.add_argument('--quick-check',action='store_true',
+                      help='Score three frozen prompts on one real checkpoint per architecture.')
     args=cli.parse_args()
     torch.set_num_threads(2)
     torch.use_deterministic_algorithms(True)
-    path=args.asset_root/'work/ws3-final/training_record.json'
+    path,tok_path=asset_paths(args.asset_root)
+    if not path.is_file():
+        path=args.asset_root/'work/ws3-final/training_record.json'
+        tok_path=args.asset_root/'work/handoff/sft/tokenizer.json'
     record=read(path)
-    tok_path=args.asset_root/'work/handoff/sft/tokenizer.json'
     require(sha(tok_path)==record['shared_assets']['tokenizer']['sha256'],'Tokenizer hash mismatch')
     tok=Tokenizer.from_file(str(tok_path))
     protocol=read(args.protocol)
@@ -183,8 +200,12 @@ def main():
     prompts,scorer=read_benchmark(args.protocol.parent,protocol)
     grid=protocol['applied_response_token_budgets']
     keys=[('T_s0',0),('T_s0',100000)] if args.smoke else [(f'{a}_s{s}',b) for a in 'TDP' for s in (0,1) for b in grid]
+    if args.quick_check:
+        keys=[('T_s0',0),('D_s0',33000),('P_s0',100000)]
+        prompts=prompts[:3]
     identity={'protocol_sha256':sha(args.protocol),'training_record_sha256':sha(path),
-              'evaluator_sha256':sha(Path(__file__)),'torch':torch.__version__,'device':'cpu','mode':'FP32'}
+              'evaluator_sha256':sha(Path(__file__)),'torch':torch.__version__,'device':'cpu','mode':'FP32',
+              'evaluation_scope':'quick_check' if args.quick_check else protocol['purpose']}
     output=read(args.out) if args.out.exists() else {'identity':identity,'rows':[],'complete':False}
     require(output['identity']==identity,'Existing results belong to a different protocol')
     for name,budget in keys:
@@ -205,7 +226,7 @@ def main():
         atomic_json(args.out,output)
         print(name,actual,scored['strict_score'],scored['cap_hits'],round(scored['seconds'],1),flush=True)
     output['complete']=True
-    if not args.smoke:
+    if not (args.smoke or args.quick_check):
         output['analysis']=analyze(output['rows'],grid)
     atomic_json(args.out,output)
 

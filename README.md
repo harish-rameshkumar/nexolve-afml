@@ -49,8 +49,6 @@ These links point to the upstream datasets. Use the exact prepared artifacts fro
 
 ## Reproduce the evaluation
 
-GitHub contains the [frozen prompts and scorer](evaluation/benchmarks/instruction_constraints_v1/), the [published scores](docs/benchmark-scores.csv), and the [learning curves](docs/figures/instruction-learning-curves.png). To rerun the original 50-prompt benchmark, obtain the six pretrained checkpoints, the 18 fine-tuning snapshots, the exact tokenizer, and the training record from the project team. The [evaluation guide](docs/instruction-evaluation.md#run-the-evaluation) shows the folder layout and command. The evaluator checks artifact hashes and applied token counts before scoring.
+Download the [saved models, tokenizer, and training records](https://drive.google.com/drive/folders/1JhTpxHqsIH7sBsVe907WTf2UmF09CBut), then follow the [evaluation guide](docs/instruction-evaluation.md#run-the-evaluation). Start with the quick check on real checkpoints, then run the complete benchmark. The [published scores](docs/benchmark-scores.csv) and [learning curves](docs/figures/instruction-learning-curves.png) are available here for comparison.
 
-The fine-tuning guide describes the final snapshot budgets. The trainer checked into this repository is the pilot version. Reproducing the final fine-tuning runs from scratch requires the snapshot-producing trainer and data from the team handoff. The follow-up protocols, scripts, and predictions are in the team's separate evidence archive.
-
-See the [reproduction checklist](docs/reproduction.md) for the tested environment and the files needed to audit each result.
+The [reproduction checklist](docs/reproduction.md) links the prepared data and records the tested environment and training limitations.
