@@ -23,14 +23,25 @@ P controls for total parameter count: it is within 0.084% of D. The [architectur
 
 Differential Transformer V2 showed no consistent advantage on the original instruction benchmark. It led on a small synthetic retrieval learning curve. The parameter-matched standard-attention model reached the accuracy target sooner on the familiar instruction-conflict task. Rephrasing that instruction sharply reduced accuracy across architectures. [Results and limitations](docs/results.md)
 
-## Run the checks
+## Run the demo and tests
 
-Install the project dependencies, then run the tests and a small evaluation demo from the repository root:
+From the repository root, run the demo with Python 3.12:
+
+```sh
+python -m evaluation.demo --out outputs/evaluation-demo
+```
+
+Open `outputs/evaluation-demo/report.html` to see how the scorer handles example responses. The demo uses fixtures, so it runs without checkpoints or training data.
+
+To run the test suite, install the dependencies first:
 
 ```sh
 python -m pip install -r requirements.txt
 python -m pytest tests sft/test_masked_loss.py -q
-python -m evaluation.demo --out outputs/evaluation-demo
 ```
 
-The demo uses fixture responses. See the evaluation guide for how to run the benchmark with trained weights.
+## Reproduce the evaluation
+
+GitHub contains the [frozen prompts and scorer](evaluation/benchmarks/instruction_constraints_v1/), the [published scores](docs/benchmark-scores.csv), and the [learning curves](docs/figures/instruction-learning-curves.png). To rerun the original 50-prompt benchmark, obtain the six pretrained checkpoints, the 18 fine-tuning snapshots, the exact tokenizer, and the training record from the project team. The [evaluation guide](docs/instruction-evaluation.md#run-the-evaluation) shows the folder layout and command. The evaluator checks artifact hashes and applied token counts before scoring.
+
+The fine-tuning guide describes the final snapshot budgets. The trainer checked into this repository is the pilot version. Reproducing the final fine-tuning runs from scratch requires the snapshot-producing trainer and data from the team handoff. The follow-up protocols, scripts, and predictions are in the team's separate evidence archive.

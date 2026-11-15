@@ -18,7 +18,7 @@ One recipe for T, D and P. Only `--arm` and `--seed` change.
 ## Run it
 
 ```bash
-pip install -r requirements.txt && pip install -r requirements-ws2.txt
+python -m pip install -r requirements.txt
 
 # 1. ONCE, on one machine. Then upload data/pretrain/ to the team drive / a Kaggle dataset.
 python -m pretraining.prepare_data --out data/pretrain
