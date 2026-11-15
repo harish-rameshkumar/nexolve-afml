@@ -40,8 +40,17 @@ python -m pip install -r requirements.txt
 python -m pytest tests sft/test_masked_loss.py -q
 ```
 
+## Datasets
+
+- [FineWeb-Edu, sample-10BT](https://huggingface.co/datasets/HuggingFaceFW/fineweb-edu/viewer/sample-10BT) for pretraining. See [data preparation and validation split](docs/pretraining.md).
+- [SmolTalk, smol-magpie-ultra](https://huggingface.co/datasets/HuggingFaceTB/smoltalk/viewer/smol-magpie-ultra) for supervised fine-tuning. See [fine-tuning data and token accounting](docs/supervised-fine-tuning.md).
+
+These links point to the upstream datasets. Use the exact prepared artifacts from the team to reproduce the reported runs.
+
 ## Reproduce the evaluation
 
 GitHub contains the [frozen prompts and scorer](evaluation/benchmarks/instruction_constraints_v1/), the [published scores](docs/benchmark-scores.csv), and the [learning curves](docs/figures/instruction-learning-curves.png). To rerun the original 50-prompt benchmark, obtain the six pretrained checkpoints, the 18 fine-tuning snapshots, the exact tokenizer, and the training record from the project team. The [evaluation guide](docs/instruction-evaluation.md#run-the-evaluation) shows the folder layout and command. The evaluator checks artifact hashes and applied token counts before scoring.
 
 The fine-tuning guide describes the final snapshot budgets. The trainer checked into this repository is the pilot version. Reproducing the final fine-tuning runs from scratch requires the snapshot-producing trainer and data from the team handoff. The follow-up protocols, scripts, and predictions are in the team's separate evidence archive.
+
+See the [reproduction checklist](docs/reproduction.md) for the tested environment and the files needed to audit each result.
